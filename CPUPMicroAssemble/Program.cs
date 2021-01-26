@@ -95,7 +95,7 @@ namespace CPUPMicroAssemble
             {
                 if (funcDef)
                 {
-                    if(input[i] == "end")
+                    if(input[i].Trim().ToLower() == "end")
                     {
                         Function f = new Function(funcName, code.ToArray());
                         functions.Add(f);
@@ -136,32 +136,55 @@ namespace CPUPMicroAssemble
             string instName = "";
             bool instDef = false;
             code = new List<string>();
-            string arg1;
-            string arg2;
+            string arg1 = "";
+            string arg2 = ""; 
             for (int i = 0; i < input.Length; i++)
             {
                 if (instDef)
                 {
-                    if (input[i] == "end")
+                    if (input[i].Trim().ToLower() == "end")
                     {
-                        Instruction i = new Instruction
-                        functions.Add(f);
+                        Instruction instruction = new Instruction(instName, arg1, arg2, code.ToArray());
+                        instructions.Add(instruction);
                         code.Clear();
                         funcDef = false;
+                        arg1 = "";
+                        arg2 = "";
                     }
                     else
                     {
-                        if (input[i].Trim() != "")
+                        if (input[i].Trim() != "") //Skipping whitespace
                         {
-                            try
-                            {
-                                code.Add(Line(input[i]));
+                            if (input[i].Contains(".")){//using a function
+                                string func = input[i].Trim().Substring(1);
+                                int findex = -1;
+                                for(int j = 0; j < functions.Count; j++)
+                                {
+                                    if(functions[j].name == func)
+                                    {
+                                        findex = j;
+                                    }
+                                }
+                                if (findex == -1)
+                                {
+                                    Console.WriteLine("Cannot find function by name: {0} at line {1}", func, i + 1);
+                                    return 5;
+                                }
+                                code.AddRange(functions[findex].microcode);
                             }
-                            catch (Exception e)
+                            else
                             {
-                                Console.WriteLine(e.Message);
-                                return 3;
+                                try
+                                {
+                                    code.Add(Line(input[i]));
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                    return 3;
+                                }
                             }
+
                         }
                     }
                 }
@@ -173,14 +196,32 @@ namespace CPUPMicroAssemble
                         if(input[i].Substring(8).Trim().Split(' ').Length >= 2)
                         {
 
-                            arg1 = input[i].Substring(8).Trim().Split(' ');
+                            if (typedict.ContainsKey(input[i].Substring(8).Trim().Split(' ')[1]))
+                            {
+                                arg1 = input[i].Substring(8).Trim().Split(' ')[1];
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error Parsing Line: {0}\n{1} is not a valid type.", i + 1, input[i].Substring(8).Trim().Split(' ')[1]);
+                                return 4;
+                            }
 
                         }
                         if (input[i].Substring(8).Trim().Split(' ').Length == 3)
                         {
-
+                            if(typedict.ContainsKey(input[i].Substring(8).Trim().Split(' ')[2]))
+                            {
+                                arg2 = input[i].Substring(8).Trim().Split(' ')[2];
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error Parsing Line: {0}\n{1} is not a valid type.", i + 1, input[i].Substring(8).Trim().Split(' ')[2]);
+                                return 4;
+                            }
                         }
+                        
                         instDef = true;
+                        code = new List<string>();
                     }
                 }
             }

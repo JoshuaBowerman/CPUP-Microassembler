@@ -7,12 +7,13 @@ namespace CPUPMicroAssemble
     class Function
     {
 
-        string[] microcode;
-        string name;
+        public string[] microcode;
+        public string name;
 
         public Function(string Title, string[] code)
         {
-
+            name = Title;
+            microcode = code;
         }
     }
 }
