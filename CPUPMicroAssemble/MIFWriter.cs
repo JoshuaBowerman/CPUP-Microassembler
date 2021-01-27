@@ -81,6 +81,7 @@ namespace CPUPMicroAssemble
                     file += "   [" + IntToAddr(curAddr) + ".." + IntToAddr(2047) + "]  :  " + Program.sigdict["NOP"] + ";\n";
                 }
             }
+            file += "END;";
 
 
             //Write the file
