@@ -16,6 +16,10 @@ namespace CPUPMicroAssemble
                 data[i] = "";
             }
         }
+        public void Insert(Instruction inst)
+        {
+
+        }
 
         public void Insert(string addr,string[] code)
         {

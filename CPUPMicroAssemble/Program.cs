@@ -67,9 +67,9 @@ namespace CPUPMicroAssemble
         static int Main(string[] args)
         {
 
-            if(args.Length == 0)
+            if(args.Length <=  1)
             {
-                Console.WriteLine("CPUP Microcode Assembler\nusage: CPUPMA.EXE MICRO.MA");
+                Console.WriteLine("CPUP Microcode Assembler\nusage: CPUPMA.EXE MICRO.MA OUTPUT.MIF");
                 return 1;
             }
 
@@ -84,6 +84,13 @@ namespace CPUPMicroAssemble
                 return 2;
             }
 
+            Console.WriteLine("Linting"); //Its really just replacing tabs with spaces, nothing fancy
+            for(int i = 0; i < input.Length; i++)
+            {
+                input[i] = input[i].Replace("\t", " ");
+            }
+
+            Console.WriteLine("Parsing Functions");
 
             List<Function> functions = new List<Function>();
             List<Instruction> instructions = new List<Instruction>();
@@ -129,7 +136,7 @@ namespace CPUPMicroAssemble
             }
 
 
-
+            Console.WriteLine("Parsing Instructions");
 
 
             //Instructions
@@ -137,7 +144,7 @@ namespace CPUPMicroAssemble
             bool instDef = false;
             code = new List<string>();
             string arg1 = "";
-            string arg2 = ""; 
+            string arg2 = "";
             for (int i = 0; i < input.Length; i++)
             {
                 if (instDef)
@@ -147,7 +154,7 @@ namespace CPUPMicroAssemble
                         Instruction instruction = new Instruction(instName, arg1, arg2, code.ToArray());
                         instructions.Add(instruction);
                         code.Clear();
-                        funcDef = false;
+                        instDef = false;
                         arg1 = "";
                         arg2 = "";
                     }
@@ -225,7 +232,8 @@ namespace CPUPMicroAssemble
                     }
                 }
             }
-
+            Console.WriteLine("Parsing Complete");
+            MIFWriter.Write(instructions, args[1]);
             return 0;
         }
 
@@ -233,7 +241,7 @@ namespace CPUPMicroAssemble
         {
             string result = sigdict["NOP"];
 
-            foreach(string word in line.Split(" "))
+            foreach(string word in line.Trim().Split(" "))
             {
                 if (sigdict.ContainsKey(word))
                 {

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CPUPMicroAssemble": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\Josh\\Desktop\\CPUP\\DE0_NANO\\CPUP\\microcode.ma ./out.mif"
+    }
+  }
+}
