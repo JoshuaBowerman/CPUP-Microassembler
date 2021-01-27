@@ -11,7 +11,7 @@
         "projectName": "CPUPMicroAssemble",
         "projectPath": "C:\\Users\\Josh\\source\\repos\\CPUP Microassembler\\CPUPMicroAssemble\\CPUPMicroAssemble.csproj",
         "packagesPath": "C:\\Users\\Josh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Josh\\source\\repos\\CPUP Microassembler\\CPUPMicroAssemble\\obj\\",
+        "outputPath": "C:\\Users\\Josh\\source\\repos\\CPUP Microassembler\\CPUPMicroAssemble\\obj\\publish\\win-x64\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,7 +43,7 @@
           "dependencies": {
             "Microsoft.NETCore.App": {
               "target": "Package",
-              "version": "[2.1.11, )",
+              "version": "[2.1.0, )",
               "autoReferenced": true
             }
           },
@@ -55,7 +55,7 @@
         }
       },
       "runtimes": {
-        "win10-x64": {
+        "win-x64": {
           "#import": []
         }
       }
