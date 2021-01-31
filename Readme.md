@@ -8,7 +8,7 @@ All function names must start with a `.`. A normal function might look like this
 
     define .name
 	    NOP
-		NOP
+	    NOP
 	end
 
 ## Data Types
@@ -23,33 +23,33 @@ AMEM | An address stored in the word following the instruction.
 ## Supported Signals
 The following list is all the supported signals. for details on what each signal does see [Execution Module](https://github.com/JoshuaBowerman/CPUP/blob/main/execution.md)
 ### Signals
--RIN
--ROUT
--ADD
--SUB
--MUL
--DIV
--EROUT
--ERIN
--MOD
--GREATER
--EQUALS
--COM
--ADDR_IN
--WRITE
--READ
--INST_READ
--PIN
--POUT
--BIN
--AIN
--BOUT
--AOUT
--DONE
--OUT0
--OUT1
--INC_AM
--NOP
+- RIN
+- ROUT
+- ADD
+- SUB
+- MUL
+- DIV
+- EROUT
+- ERIN
+- MOD
+- GREATER
+- EQUALS
+- COM
+- ADDR_IN
+- WRITE
+- READ
+- INST_READ
+- PIN
+- POUT
+- BIN
+- AIN
+- BOUT
+- AOUT
+- DONE
+- OUT0
+- OUT1
+- INC_AM
+- NOP
 
 ## Defining an instruction
 When defining an instruction you start with `$` in the same way you start with `.` for functions.
@@ -85,7 +85,7 @@ All together an instruction may look like this.
 
     define $JMP MEM
 	    AOUT PIN ADDR_IN
-		NOP
-		INST_READ DONE
+	    NOP
+	    INST_READ DONE
 	end
 
