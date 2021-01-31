@@ -70,7 +70,7 @@ each line will be one microinstruction. each signal is seperated by a space.
 
 **Example:**
 
-`RIN READ AIN'
+`RIN READ AIN`
 
 You can use functions simply by writing their name, note that they must be on thier own line.
 
