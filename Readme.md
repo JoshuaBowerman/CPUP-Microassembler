@@ -1,9 +1,9 @@
-#CPUP Microassembler
+# CPUP Microassembler
 
 The CPUP Microassembler turns a microassembly file into a MIF file used to initialize the microcode rom.
 The microassembler supports functions and types. 
 
-##Functions
+## Functions
 All function names must start with a `.`. A normal function might look like this
 
     define .name
@@ -11,7 +11,7 @@ All function names must start with a `.`. A normal function might look like this
 		NOP
 	end
 
-##Data Types
+## Data Types
 there are 4 data types supported by this microassembler.
 Keyword | Meaning
 ------- | -------
@@ -20,9 +20,9 @@ MEM | A memory location contains in a register
 AINT | A number stored in the word following the instruction.
 AMEM | An address stored in the word following the instruction.
 
-##Supported Signals
+## Supported Signals
 The following list is all the supported signals. for details on what each signal does see [Execution Module](https://github.com/JoshuaBowerman/CPUP/blob/main/execution.md)
-###Signals
+### Signals
 -RIN
 -ROUT
 -ADD
@@ -51,7 +51,7 @@ The following list is all the supported signals. for details on what each signal
 -INC_AM
 -NOP
 
-##Defining an instruction
+## Defining an instruction
 When defining an instruction you start with `$` in the same way you start with `.` for functions.
 
 An intstruction opening line takes on the following format
